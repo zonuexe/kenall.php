@@ -1,0 +1,12 @@
+/.php_cs.cache
+/.phpdoc
+/.phpunit.result.cache
+/build/
+/cache/
+/docs/api/
+/infection.log
+/tools/*.phar
+/tools/*/composer.lock
+/tools/*/vendor/
+composer.lock
+vendor/

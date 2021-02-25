@@ -1,0 +1,29 @@
+{
+    "name": "zonuexe/kenall",
+    "description": "Unofficially kenall.jp client",
+    "license": "Apache-2.0",
+    "require": {
+        "php-http/discovery": "^1.13",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.0"
+    },
+    "require-dev": {
+        "kriswallsmith/buzz": "^1.2",
+        "nyholm/psr7": "^1.4",
+        "php-http/mock-client": "^1.4"
+    },
+    "autoload": {
+        "files": ["src/functions.php"],
+        "psr-4": {
+            "zonuexe\\Kenall\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "zonuexe\\Kenall\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
