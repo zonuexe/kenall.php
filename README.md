@@ -1,8 +1,8 @@
 # Kenall.php - ケンオール非公式APIクライアント
 
-このパッケージは[Open Collector, Inc.](https://opencollector.co.jp/)が提供する[ケンオール 📮 郵便番号・住所検索API](https://kenall.jp/)の非公式APIクライアントです。
+PHP向けの[ケンオール 📮 郵便番号・住所検索API](https://kenall.jp/)の非公式APIクライアントです。このパッケージは個人によって開発されており、[Open Collector, Inc.](https://opencollector.co.jp/)が提供するものではありません。
 
-基本機能は実装していますがエラーハンドリングなどは未実装なので、必要なひとはPull Requestを送ってください。
+このパッケージは開発の初期段階であり、現状有姿・無保証として提供されます。通常の用途で利用するための基本的な機能は実装していますが、エラーハンドリングなどは未実装です。必要ならばPull Requestを送ってください。
 
 ## Install
 
