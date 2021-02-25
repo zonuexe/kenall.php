@@ -73,7 +73,7 @@ echo $response->version, PHP_EOL;
 
 一般的な意味での「住所」に相当するクラスです。プロパティは[ケンオールのドキュメント](https://www.notion.so/API-47ab1a425d9e48aaad5b34b4f703c718)に準じています。
 
-## Usage
+## 使用のためのヒント
 
 ### 初心者向け
 
@@ -112,7 +112,7 @@ $client = zonuexe\Kenall\create_client($api_key, $http_client);
 ```
 
 あるいは[PHP-HTTP Discoveryのドキュメント](https://php-http.readthedocs.io/en/latest/discovery.html)を参考にMockClientをセットすることで実装コードに手を入れずにHTTPクライアントを避けることも可能です。
-/
+
 ## Copyright
 
 > Copyright 2021 USAMI Kenta
