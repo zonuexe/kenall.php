@@ -1,5 +1,9 @@
 # Kenall.php - ケンオール非公式APIクライアント
 
+![Packagist Version](https://img.shields.io/packagist/v/zonuexe/kenall?style=flat-square)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/zonuexe/kenall?style=flat-square)
+![Packagist License](https://img.shields.io/packagist/l/zonuexe/kenall?style=flat-square)
+
 PHP向けの[ケンオール 📮 郵便番号・住所検索API](https://kenall.jp/)の非公式クライアントです。このパッケージは個人によって開発されており、[Open Collector, Inc.](https://opencollector.co.jp/)が提供するものではありません。
 
 このパッケージは開発の初期段階であり、現状有姿・無保証として提供されます。通常の用途で利用するための基本的な機能は実装していますが、エラーハンドリングなどは未実装です。機能追加などのPull Requestを歓迎します。
