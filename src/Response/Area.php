@@ -26,10 +26,10 @@ use function json_decode;
  * @property-read string $kyoto_street
  * @property-read string $building
  * @property-read string $floor
- * @property-read string $town_partial
- * @property-read string $town_addressed_koaza
- * @property-read string $town_chome
- * @property-read string $town_multi
+ * @property-read bool $town_partial
+ * @property-read bool $town_addressed_koaza
+ * @property-read bool $town_chome
+ * @property-read bool $town_multi
  * @property-read string $town_raw
  * @property-read array{name:string, name_kana:string, block_lot:string, post_office:string, code_type:string} $corporation
  */
@@ -52,10 +52,10 @@ class Area
      *     kyoto_street: string,
      *     building: string,
      *     floor: string,
-     *     town_partial: string,
-     *     town_addressed_koaza: string,
-     *     town_chome: string,
-     *     town_multi: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
      *     town_raw: string,
      *     corporation: array{
      *         name: string,
@@ -84,10 +84,10 @@ class Area
      *     kyoto_street: string,
      *     building: string,
      *     floor: string,
-     *     town_partial: string,
-     *     town_addressed_koaza: string,
-     *     town_chome: string,
-     *     town_multi: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
      *     town_raw: string,
      *     corporation: array{
      *         name: string,
