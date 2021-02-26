@@ -3,6 +3,7 @@
     "description": "Unofficially kenall.jp client",
     "license": "Apache-2.0",
     "require": {
+        "php": ">=7.1.0",
         "php-http/discovery": "^1.13",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0"
