@@ -17,7 +17,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface as HttpClient;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use zonuexe\Kenall\Response\PostalCodeResponse;
+use zonuexe\Kenall\Response\V1\AddressResolverResponse;
 use function getenv;
 
 function create_client(
@@ -34,7 +34,7 @@ function create_client(
     );
 }
 
-function find(string $postal_code): PostalCodeResponse
+function find(string $postal_code): AddressResolverResponse
 {
     static $client;
 

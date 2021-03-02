@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace zonuexe\Kenall\Response;
+namespace zonuexe\Kenall\Response\V1;
 
 use ArrayIterator;
 use IteratorAggregate;
@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use function json_decode;
 
 /**
- * Postal Area (郵政区画)
+ * Postal Address (郵便区画)
  *
  * @property-read string $jisx0402
  * @property-read string $old_code
@@ -34,7 +34,7 @@ use function json_decode;
  * @property-read string $town_raw
  * @property-read array{name:string, name_kana:string, block_lot:string, post_office:string, code_type:string} $corporation
  */
-class Area implements JsonSerializable
+class Address implements JsonSerializable
 {
     /**
      * @var array

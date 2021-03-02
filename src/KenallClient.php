@@ -10,7 +10,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use zonuexe\Kenall\Response\ApiResponseInterface;
-use zonuexe\Kenall\Response\PostalCodeResponse;
+use zonuexe\Kenall\Response\V1\AddressResolverResponse;
 
 class KenallClient
 {
@@ -35,12 +35,12 @@ class KenallClient
         $this->uri_factory = $uri_factory;
     }
 
-    public function findPostalCode(string $postal_code): PostalCodeResponse
+    public function findPostalCode(string $postal_code): AddressResolverResponse
     {
         $uri = $this->buildUriString("postalcode/{$postal_code}");
         $request = $this->request_factory->createRequest('GET', $uri);
 
-        return $this->request($request, PostalCodeResponse::class);
+        return $this->request($request, AddressResolverResponse::class);
     }
 
     /**
