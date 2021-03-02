@@ -6,10 +6,10 @@ namespace zonuexe\Kenall\Response;
 
 use ArrayAccess;
 use ArrayIterator;
-use Traversable;
 use IteratorAggregate;
 use OutOfRangeException;
 use Psr\Http\Message\ResponseInterface;
+use Traversable;
 use function json_decode;
 
 /**
