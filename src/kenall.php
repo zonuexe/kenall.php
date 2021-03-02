@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/**
+ * kenall.jp API client
+ *
+ * @author USAMI Kenta <tadsan@zonu.me>
+ * @copyright 2021 USAMI Kenta
+ * @license Apache-2.0
+ */
 namespace zonuexe\Kenall;
 
 use DomainException;
