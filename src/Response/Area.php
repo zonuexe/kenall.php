@@ -6,6 +6,7 @@ namespace zonuexe\Kenall\Response;
 
 use ArrayIterator;
 use IteratorAggregate;
+use JsonSerializable;
 use Psr\Http\Message\ResponseInterface;
 use function json_decode;
 
@@ -33,7 +34,7 @@ use function json_decode;
  * @property-read string $town_raw
  * @property-read array{name:string, name_kana:string, block_lot:string, post_office:string, code_type:string} $corporation
  */
-class Area
+class Area implements JsonSerializable
 {
     /**
      * @var array
@@ -109,5 +110,40 @@ class Area
     public function __get(string $name)
     {
         return $this->data[$name];
+    }
+
+    /**
+     * @return array{
+     *     jisx0402: string,
+     *     old_code: string,
+     *     postal_code: string,
+     *     prefecture_kana: string,
+     *     city_kana: string,
+     *     town_kana: string,
+     *     town_kana_raw: string,
+     *     prefecture: string,
+     *     city: string,
+     *     town: string,
+     *     koaza: string,
+     *     kyoto_street: string,
+     *     building: string,
+     *     floor: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
+     *     town_raw: string,
+     *     corporation: array{
+     *         name: string,
+     *         name_kana: string,
+     *         block_lot: string,
+     *         post_office: string,
+     *         code_type: string
+     *     }
+     * }
+     */
+    public function jsonSerialize()
+    {
+        return $this->data;
     }
 }

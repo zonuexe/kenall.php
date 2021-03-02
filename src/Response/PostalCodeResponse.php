@@ -7,6 +7,7 @@ namespace zonuexe\Kenall\Response;
 use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
+use JsonSerializable;
 use OutOfRangeException;
 use Psr\Http\Message\ResponseInterface;
 use Traversable;
@@ -18,7 +19,7 @@ use function json_decode;
  * @template-implements ArrayAccess<int, Area>
  * @template-implements IteratorAggregate<int, Area>
  */
-class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorAggregate
+class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorAggregate, JsonSerializable
 {
     /** @var string */
     private $version;
@@ -187,5 +188,43 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
         $data = json_decode((string)$response->getBody(), true);
 
         return new static($data['version'], $data['data']);
+    }
+
+    /**
+     * @return array{version: string, data: array<int,array{
+     *     jisx0402: string,
+     *     old_code: string,
+     *     postal_code: string,
+     *     prefecture_kana: string,
+     *     city_kana: string,
+     *     town_kana: string,
+     *     town_kana_raw: string,
+     *     prefecture: string,
+     *     city: string,
+     *     town: string,
+     *     koaza: string,
+     *     kyoto_street: string,
+     *     building: string,
+     *     floor: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
+     *     town_raw: string,
+     *     corporation: array{
+     *         name: string,
+     *         name_kana: string,
+     *         block_lot: string,
+     *         post_office: string,
+     *         code_type: string
+     *     }
+     * }>}
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'version' => $this->version,
+            'data' => $this->data,
+        ];
     }
 }
