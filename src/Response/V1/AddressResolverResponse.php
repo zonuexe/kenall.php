@@ -2,23 +2,25 @@
 
 declare(strict_types=1);
 
-namespace zonuexe\Kenall\Response;
+namespace zonuexe\Kenall\Response\V1;
 
 use ArrayAccess;
 use ArrayIterator;
-use Traversable;
 use IteratorAggregate;
+use JsonSerializable;
 use OutOfRangeException;
 use Psr\Http\Message\ResponseInterface;
+use Traversable;
+use zonuexe\Kenall\Response\ApiResponseInterface;
 use function json_decode;
 
 /**
  * Postal Code
  *
- * @template-implements ArrayAccess<int, Area>
- * @template-implements IteratorAggregate<int, Area>
+ * @template-implements ArrayAccess<int, Address>
+ * @template-implements IteratorAggregate<int, Address>
  */
-class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorAggregate
+class AddressResolverResponse implements ApiResponseInterface, ArrayAccess, IteratorAggregate, JsonSerializable
 {
     /** @var string */
     private $version;
@@ -39,17 +41,17 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
      *     kyoto_street: string,
      *     building: string,
      *     floor: string,
-     *     town_partial: string,
-     *     town_addressed_koaza: string,
-     *     town_chome: string,
-     *     town_multi: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
      *     town_raw: string,
-     *     corporation: array{
+     *     corporation: ?array{
      *         name: string,
      *         name_kana: string,
      *         block_lot: string,
      *         post_office: string,
-     *         code_type: string
+     *         code_type: int
      *     }
      * }>
      */
@@ -71,17 +73,17 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
      *     kyoto_street: string,
      *     building: string,
      *     floor: string,
-     *     town_partial: string,
-     *     town_addressed_koaza: string,
-     *     town_chome: string,
-     *     town_multi: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
      *     town_raw: string,
-     *     corporation: array{
+     *     corporation: ?array{
      *         name: string,
      *         name_kana: string,
      *         block_lot: string,
      *         post_office: string,
-     *         code_type: string
+     *         code_type: int
      *     }
      * }> $data
      */
@@ -100,12 +102,20 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
     }
 
     /**
-     * @return Traversable<int, Area>
+     * @return array<string,mixed>
+     */
+    public function __debugInfo()
+    {
+        return $this->jsonSerialize();
+    }
+
+    /**
+     * @return Traversable<int, Address>
      */
     public function getIterator()
     {
         foreach ($this->data as $i => $area) {
-            yield $i => new Area($area);
+            yield $i => Address::fromArray($area);
         }
     }
 
@@ -120,11 +130,11 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
 
     /**
      * @param int $offset
-     * @return Area
+     * @return Address
      */
     public function offsetGet($offset)
     {
-        return new Area($this->data[$offset]);
+        return Address::fromArray($this->data[$offset]);
     }
 
     /**
@@ -169,17 +179,17 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
          *         kyoto_street: string,
          *         building: string,
          *         floor: string,
-         *         town_partial: string,
-         *         town_addressed_koaza: string,
-         *         town_chome: string,
-         *         town_multi: string,
+         *         town_partial: bool,
+         *         town_addressed_koaza: bool,
+         *         town_chome: bool,
+         *         town_multi: bool,
          *         town_raw: string,
-         *         corporation: array{
+         *         corporation: ?array{
          *             name: string,
          *             name_kana: string,
          *             block_lot: string,
          *             post_office: string,
-         *             code_type: string
+         *             code_type: int
          *         }
          *     }>
          * } $data
@@ -187,5 +197,43 @@ class PostalCodeResponse implements ApiResponseInterface, ArrayAccess, IteratorA
         $data = json_decode((string)$response->getBody(), true);
 
         return new static($data['version'], $data['data']);
+    }
+
+    /**
+     * @return array{version: string, data: array<int,array{
+     *     jisx0402: string,
+     *     old_code: string,
+     *     postal_code: string,
+     *     prefecture_kana: string,
+     *     city_kana: string,
+     *     town_kana: string,
+     *     town_kana_raw: string,
+     *     prefecture: string,
+     *     city: string,
+     *     town: string,
+     *     koaza: string,
+     *     kyoto_street: string,
+     *     building: string,
+     *     floor: string,
+     *     town_partial: bool,
+     *     town_addressed_koaza: bool,
+     *     town_chome: bool,
+     *     town_multi: bool,
+     *     town_raw: string,
+     *     corporation: ?array{
+     *         name: string,
+     *         name_kana: string,
+     *         block_lot: string,
+     *         post_office: string,
+     *         code_type: int
+     *     }
+     * }>}
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'version' => $this->version,
+            'data' => $this->data,
+        ];
     }
 }

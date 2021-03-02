@@ -1,8 +1,8 @@
 # Kenall.php - ケンオール非公式APIクライアント
 
-![Packagist Version](https://img.shields.io/packagist/v/zonuexe/kenall?style=flat-square)
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/zonuexe/kenall?style=flat-square)
-![Packagist License](https://img.shields.io/packagist/l/zonuexe/kenall?style=flat-square)
+[![Packagist Version](https://img.shields.io/packagist/v/zonuexe/kenall?style=flat-square)](https://packagist.org/packages/zonuexe/kenall)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/zonuexe/kenall?style=flat-square)](https://www.php.net/supported-versions.php)
+[![Packagist License](https://img.shields.io/packagist/l/zonuexe/kenall?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
 
 PHP向けの[ケンオール 📮 郵便番号・住所検索API](https://kenall.jp/)の非公式クライアントです。このパッケージは個人によって開発されており、[Open Collector, Inc.](https://opencollector.co.jp/)が提供するものではありません。
 
@@ -42,7 +42,7 @@ composer require guzzlehttp/guzzle guzzlehttp/psr7
 
 ## API
 
-### `function find(string $postal_code): PostalCodeResponse`
+### `function find(string $postal_code): AddressResolverResponse`
 
 難しいことを考えずに郵便番号検索したいひと向けの関数です。
 
@@ -60,11 +60,11 @@ APIクライアントのインスタンスを取得し、オブジェクト指�
 
 ケンオールへのAPIリクエストを行なうクライアントクラスです。
 
- * `findPostalCode(string $postal_code): PostalCodeResponse`
+ * `findPostalCode(string $postal_code): AddressResolverResponse`
    * ケンオールの `GET /postalcode/:郵便番号` APIに対応します
    * 引数の `string $postal_code` は文字列型で7桁の数字である必要があります。
 
-### `class PostalCodeResponse`
+### `class AddressResolverResponse`
 
 ケンオールの `GET /postalcode/:郵便番号` APIから返される値に対応したオブジェクトです。
 
@@ -73,9 +73,9 @@ echo $response->version, PHP_EOL;
 // => "2021-01-29"
 ```
 
-このオブジェクトは `ArrayAccess` およびイテレータを実装しており、配列や `foreach` でのデータの取り出しに対応しています。これらの方法で `Area` を取得することができます。
+このオブジェクトは `ArrayAccess` およびイテレータを実装しており、配列や `foreach` でのデータの取り出しに対応しています。これらの方法で `Address` を取得することができます。
 
-### `class Area` (郵便区画レコード)
+### `class Address` (郵便区画レコード)
 
 一般的な意味での「住所」に相当するクラスです。プロパティは[ケンオールのドキュメント](https://www.notion.so/API-47ab1a425d9e48aaad5b34b4f703c718)に準じています。
 
