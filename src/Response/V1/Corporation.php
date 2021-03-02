@@ -55,6 +55,14 @@ class Corporation implements JsonSerializable
     }
 
     /**
+     * @return array<string,mixed>
+     */
+    public function __debugInfo()
+    {
+        return $this->jsonSerialize();
+    }
+
+    /**
      * @return array{
      *     name: string,
      *     name_kana: string,

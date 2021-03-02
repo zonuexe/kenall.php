@@ -102,6 +102,14 @@ class AddressResolverResponse implements ApiResponseInterface, ArrayAccess, Iter
     }
 
     /**
+     * @return array<string,mixed>
+     */
+    public function __debugInfo()
+    {
+        return $this->jsonSerialize();
+    }
+
+    /**
      * @return Traversable<int, Address>
      */
     public function getIterator()

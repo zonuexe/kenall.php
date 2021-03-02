@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
  * Response classes implements [`JsonSerializable`](https://www.php.net/JsonSerializable).
+ * Response classes implements [`__debugInfo()`](https://www.php.net/manual/language.oop5.magic.php#object.debuginfo) magic method.
  * Add `Corporation` class instead of associative arrays.
 
 ### Changed
